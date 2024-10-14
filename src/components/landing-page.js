@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CheckCircle, Code, Users, TrendingUp, Lightbulb, Calendar, BookOpen, Rocket, Menu } from 'lucide-react'
+import Images from "@/asset/saas.jpg"
 
 export default function LandingPageComponent() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
@@ -16,7 +17,7 @@ export default function LandingPageComponent() {
       <header className="bg-gray-800 shadow-md sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <Image src="/logo-white.png" alt="AASTU SaaS Founders Logo" width={200} height={50} className="invert" />
+            <Image src={Images} alt="AASTU SaaS Founders Logo" width={60} height={15} className="invert" />
           </div>
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
@@ -282,8 +283,8 @@ export default function LandingPageComponent() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-lg font-semibold mb-4 text-blue-400">Contact Us</h3>
-              <p>Email: info@aastusaas.com</p>
-              <p>Phone: +251 123 456 789</p>
+              <p>Email: mesfinmastwal@gmail.com</p>
+              <p>Phone: +251 915949551</p>
               <p>Address: AASTU Campus, Addis Ababa, Ethiopia</p>
             </div>
             <div>
