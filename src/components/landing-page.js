@@ -1,15 +1,46 @@
 'use client'
 
-import React from 'react'
 import Image from 'next/image'
+import React, { useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { CheckCircle, Code, Users, TrendingUp, Lightbulb, Calendar, BookOpen, Rocket, Menu } from 'lucide-react'
+import { CheckCircle, Code, Users, TrendingUp, Lightbulb, Calendar, BookOpen, Rocket, Menu, Moon, Sun } from 'lucide-react'
 import Images from "@/asset/saas.jpg"
+import { useTheme } from "next-themes"
+import Link from 'next/link';
+
 
 export default function LandingPageComponent() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { theme, setTheme } = useTheme()
+
+  useEffect(() => {
+    const smoothScroll = (e) => {
+      e.preventDefault();
+      const target = e.target;
+      const id = target.getAttribute('href')?.slice(1);
+      if (id) {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      }
+    };
+
+    const links = document.querySelectorAll('a[href^="#"]');
+    links.forEach(link => {
+      link.addEventListener('click', smoothScroll);
+    });
+
+    return () => {
+      links.forEach(link => {
+        link.removeEventListener('click', smoothScroll);
+      });
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 font-sans">
@@ -25,6 +56,16 @@ export default function LandingPageComponent() {
               <li><a href="#offerings" className="text-gray-300 hover:text-blue-400">Offerings</a></li>
               <li><a href="#structure" className="text-gray-300 hover:text-blue-400">Structure</a></li>
               <li><a href="#join" className="text-gray-300 hover:text-blue-400">Join Us</a></li>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              aria-label="Toggle theme"
+            >
+              <Sun className="h-6 w-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
             </ul>
           </nav>
           <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -39,6 +80,16 @@ export default function LandingPageComponent() {
               <li><a href="#offerings" className="text-gray-300 hover:text-blue-400" onClick={() => setIsMenuOpen(false)}>Offerings</a></li>
               <li><a href="#structure" className="text-gray-300 hover:text-blue-400" onClick={() => setIsMenuOpen(false)}>Structure</a></li>
               <li><a href="#join" className="text-gray-300 hover:text-blue-400" onClick={() => setIsMenuOpen(false)}>Join Us</a></li>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                aria-label="Toggle theme"
+              >
+                <Sun className="h-6 w-6 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-6 w-6 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <span className="sr-only">Toggle theme</span>
+              </Button>
             </ul>
           </nav>
         )}
@@ -49,9 +100,11 @@ export default function LandingPageComponent() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-blue-400">AASTU SaaS Founders Club</h1>
           <p className="text-xl mb-8 text-gray-300">Ethiopia's premier student-led initiative for SaaS development and entrepreneurship</p>
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-            Join Now
-          </Button>
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
+              <a href="#join">
+                  Join Now
+              </a>
+            </Button>
         </div>
       </section>
 
@@ -300,19 +353,19 @@ export default function LandingPageComponent() {
             <div>
               <h3 className="text-lg font-semibold mb-4 text-blue-400">Follow Us</h3>
               <div className="flex space-x-4">
-                <a href="#" className="hover:text-blue-400">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
-                  </svg>
-                </a>
-                <a href="#" className="hover:text-blue-400">
+                <a href="https://x.com/AastuClub" className="hover:text-blue-400">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                   </svg>
                 </a>
-                <a href="#" className="hover:text-blue-400">
+                <a href="https://github.com/AASTU-sASS-Founders" className="hover:text-blue-400">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                  </svg>
+                </a>
+                <a href="https://t.me/aastusaas" className="hover:text-blue-600 dark:hover:text-blue-400" aria-label="Telegram">
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
                   </svg>
                 </a>
               </div>
