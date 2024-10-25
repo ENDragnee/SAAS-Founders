@@ -8,7 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CheckCircle, Code, Users, TrendingUp, Lightbulb, Calendar, BookOpen, Rocket, Menu, Moon, Sun } from 'lucide-react'
 import Images from "@/asset/saas.jpg"
 import { useTheme } from "next-themes"
-import Link from 'next/link';
 
 
 export default function LandingPageComponent() {
