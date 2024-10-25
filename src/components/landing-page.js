@@ -342,10 +342,9 @@ export default function LandingPageComponent() {
             <div>
               <h3 className="text-lg font-semibold mb-4 text-blue-400">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-blue-400">About Us</a></li>
-                <li><a href="#" className="hover:text-blue-400">Our Programs</a></li>
-                <li><a href="#" className="hover:text-blue-400">Events</a></li>
-                <li><a href="#" className="hover:text-blue-400">Resources</a></li>
+                <li><a href="#about" className="hover:text-blue-400">About Us</a></li>
+                <li><a href="#structure" className="hover:text-blue-400">Our Programs</a></li>
+                <li><a href="#offerings" className="hover:text-blue-400">Why join?</a></li>
               </ul>
             </div>
             
